@@ -40,7 +40,7 @@ function ChannelConnectModal({ type, onClose, onRegistered, registeredValue }) {
     if (type === 'phone' || type === 'whatsapp') {
       sendValue = countryCode + value;
     }
-    const res = await fetch('http://localhost:4000/api/send-otp', {
+    const res = await fetch('https://weremind.onrender.com/api/send-otp', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       credentials: 'include',
@@ -59,7 +59,7 @@ function ChannelConnectModal({ type, onClose, onRegistered, registeredValue }) {
     e.preventDefault();
     setError('');
     setLoading(true);
-    const res = await fetch('http://localhost:4000/api/verify-otp', {
+    const res = await fetch('https://weremind.onrender.com/api/verify-otp', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       credentials: 'include',
@@ -131,7 +131,7 @@ function FeedbackSection() {
     e.preventDefault();
     setError("");
     try {
-      const res = await fetch('http://localhost:4000/api/feedback', {
+      const res = await fetch('https://weremind.onrender.com/api/feedback', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ feedback, user: currentUser?.email })
@@ -289,7 +289,7 @@ export default function Dashboard() {
       if (!currentUser) return;
       setChannelsLoading(true);
       try {
-        const res = await fetch(`http://localhost:4000/api/otp/user-channels/${currentUser.uid}`);
+        const res = await fetch(`https://weremind.onrender.com/api/otp/user-channels/${currentUser.uid}`);
         const data = await res.json();
         setUserChannels(data);
       } catch (e) {
@@ -304,7 +304,7 @@ export default function Dashboard() {
   useEffect(() => {
     async function fetchUpcomingReminders() {
       try {
-        const res = await fetch('http://localhost:4000/api/reminders');
+        const res = await fetch('https://weremind.onrender.com/api/reminders');
         const data = await res.json();
         // Filter to only upcoming reminders (dateTime in the future)
         const now = new Date();
@@ -333,7 +333,7 @@ export default function Dashboard() {
 
   const handleDeleteReminder = async (reminder) => {
     // Remove from backend
-    await fetch(`http://localhost:4000/api/reminders/${reminder._id || reminder.id}`, { method: 'DELETE' });
+    await fetch(`https://weremind.onrender.com/api/reminders/${reminder._id || reminder.id}`, { method: 'DELETE' });
     // Remove from UI
     setReminders(prev => prev.filter(r => (r._id || r.id) !== (reminder._id || reminder.id)));
   };
@@ -429,7 +429,7 @@ export default function Dashboard() {
                   whatsapp: contacts.whatsapp
                 };
                 // Save to backend
-                const res = await fetch('http://localhost:4000/api/reminders', {
+                const res = await fetch('https://weremind.onrender.com/api/reminders', {
                   method: 'POST',
                   headers: { 'Content-Type': 'application/json' },
                   body: JSON.stringify(payload)

@@ -49,7 +49,7 @@ const ChannelVerification = () => {
 
   const fetchUserChannels = async () => {
     try {
-      const response = await fetch(`http://localhost:4000/api/otp/user-channels/${currentUser.uid}`);
+      const response = await fetch(`https://weremind.onrender.com/api/otp/user-channels/${currentUser.uid}`);
       const data = await response.json();
       
       const verified = {};
@@ -101,7 +101,7 @@ const ChannelVerification = () => {
     setMessages(prev => ({ ...prev, [channelType]: '' }));
 
     try {
-      const response = await fetch('http://localhost:4000/api/otp/send-otp', {
+      const response = await fetch('https://weremind.onrender.com/api/otp/send-otp', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -156,7 +156,7 @@ const ChannelVerification = () => {
     setVerifying(prev => ({ ...prev, [channelType]: true }));
 
     try {
-      const response = await fetch('http://localhost:4000/api/otp/verify-otp', {
+      const response = await fetch('https://weremind.onrender.com/api/otp/verify-otp', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -219,7 +219,7 @@ const ChannelVerification = () => {
               onClick={async () => {
                 try {
                   const response = await fetch(
-                    `http://localhost:4000/api/otp/disconnect-channel/${currentUser.uid}/${channelType}`,
+                    `https://weremind.onrender.com/api/otp/disconnect-channel/${currentUser.uid}/${channelType}`,
                     { method: 'DELETE' }
                   );
                   
