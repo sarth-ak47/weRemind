@@ -1,0 +1,114 @@
+.wr-login-root {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #fff;
+}
+.wr-login-card {
+  background: #fff;
+  border-radius: 18px;
+  box-shadow: 0 4px 32px rgba(0,0,0,0.08);
+  padding: 48px 36px 36px 36px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 340px;
+  max-width: 400px;
+}
+.wr-login-logo-large {
+  width: 64px;
+  height: 64px;
+  background: #181818;
+  color: #fff;
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2.6em;
+  font-weight: bold;
+  margin-bottom: 24px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+}
+.wr-login-logo-text {
+  font-family: 'Inter', Arial, sans-serif;
+  font-weight: 800;
+  font-size: 1em;
+}
+.wr-login-welcome {
+  font-size: 2em;
+  font-weight: 800;
+  margin-bottom: 8px;
+  text-align: center;
+}
+.wr-login-subtitle {
+  color: #888;
+  font-size: 1.1em;
+  margin-bottom: 32px;
+  text-align: center;
+}
+.wr-login-provider-btn {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  background: #fff;
+  color: #181818;
+  border: 1.5px solid #e0e0e0;
+  border-radius: 10px;
+  padding: 14px 0;
+  font-size: 1.13em;
+  font-weight: 600;
+  cursor: pointer;
+  margin-bottom: 16px;
+  justify-content: center;
+  transition: background 0.2s, color 0.2s, border 0.2s;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.03);
+}
+.wr-login-provider-btn:last-child {
+  margin-bottom: 0;
+}
+.wr-login-provider-btn:hover {
+  background: #f2f2f2;
+  color: #1abc1a;
+  border-color: #1abc1a;
+}
+.wr-google-icon {
+  width: 24px;
+  height: 24px;
+}
+.wr-github-icon {
+  width: 24px;
+  height: 24px;
+}
+.wr-login-terms {
+  margin-top: 28px;
+  color: #888;
+  font-size: 0.98em;
+  text-align: center;
+}
+.wr-login-terms a {
+  color: #1abc1a;
+  text-decoration: none;
+  font-weight: 500;
+}
+.wr-login-terms a:hover {
+  text-decoration: underline;
+}
+
+.wr-login-error {
+  background: #fee;
+  color: #c33;
+  border: 1px solid #fcc;
+  border-radius: 8px;
+  padding: 12px;
+  margin-bottom: 16px;
+  font-size: 0.9em;
+  text-align: center;
+  width: 100%;
+}
+
+.wr-login-provider-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+} 

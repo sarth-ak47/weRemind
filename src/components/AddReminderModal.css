@@ -1,0 +1,138 @@
+.add-reminder-modal-overlay {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(0,0,0,0.18);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.add-reminder-modal {
+  background: #fff;
+  border-radius: 18px;
+  box-shadow: 0 4px 32px rgba(0,0,0,0.12);
+  padding: 36px 32px 28px 32px;
+  min-width: 350px;
+  max-width: 98vw;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+}
+.add-reminder-modal h2 {
+  font-size: 1.35rem;
+  font-weight: 700;
+  margin-bottom: 18px;
+  text-align: left;
+}
+.add-reminder-modal label {
+  font-weight: 500;
+  margin-top: 12px;
+  margin-bottom: 6px;
+  color: #222;
+  font-size: 1rem;
+}
+.add-reminder-modal input[type="text"],
+.add-reminder-modal input[type="datetime-local"] {
+  width: 100%;
+  padding: 12px 14px;
+  border: 1px solid #d1d5db;
+  border-radius: 7px;
+  font-size: 1rem;
+  margin-bottom: 2px;
+  margin-top: 0;
+  transition: border-color 0.2s;
+}
+.add-reminder-modal input:focus {
+  outline: none;
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 2px rgba(59,130,246,0.08);
+}
+.methods-list {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 18px;
+  margin-top: 4px;
+}
+.method-btn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: #f8f8f8;
+  border: 1.5px solid #e5e7eb;
+  border-radius: 8px;
+  padding: 8px 18px;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.18s, border 0.18s;
+}
+.method-btn.selected {
+  background: #181818;
+  color: #fff;
+  border-color: #181818;
+}
+.method-btn:hover:not(.selected) {
+  background: #f3f3f3;
+  border-color: #bdbdbd;
+}
+.no-methods {
+  color: #888;
+  font-size: 0.98rem;
+  padding: 8px 0;
+}
+.add-btn {
+  width: 100%;
+  background: #181818;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 12px 0;
+  font-size: 1.08rem;
+  font-weight: 600;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.add-btn:disabled {
+  background: #bdbdbd;
+  cursor: not-allowed;
+}
+.close-btn-secondary {
+  width: 100%;
+  background: #fff;
+  color: #181818;
+  border: 1.5px solid #e5e7eb;
+  border-radius: 8px;
+  padding: 12px 0;
+  font-size: 1.08rem;
+  font-weight: 500;
+  cursor: pointer;
+  margin-top: 2px;
+  transition: background 0.2s, color 0.2s;
+}
+.close-btn-secondary:hover {
+  background: #f3f3f3;
+  color: #181818;
+}
+.close-btn {
+  position: absolute;
+  top: 18px;
+  right: 18px;
+  background: none;
+  border: none;
+  font-size: 1.6rem;
+  color: #888;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+.close-btn:hover {
+  color: #181818;
+}
+@media (max-width: 600px) {
+  .add-reminder-modal {
+    min-width: 90vw;
+    padding: 18px 6vw 18px 6vw;
+  }
+} 

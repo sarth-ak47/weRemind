@@ -1,0 +1,273 @@
+/* Root */
+.wr-root {
+  font-family: 'Inter', Arial, sans-serif;
+  background: #fff;
+  color: #181818;
+}
+
+/* NavBar */
+.wr-navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 24px 48px 16px 48px;
+  background: #fff;
+  box-shadow: 0 2px 16px rgba(0,0,0,0.03);
+  border-radius: 0 0 32px 32px;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+.wr-logo-area {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.wr-logo {
+  width: 38px;
+  height: 38px;
+  background: #181818;
+  color: #fff;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5em;
+  font-weight: bold;
+  letter-spacing: 1px;
+}
+.wr-site-name {
+  font-size: 1.3em;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+.wr-beta {
+  font-size: 0.9em;
+  color: #888;
+  margin-left: 6px;
+}
+.wr-nav-links {
+  display: flex;
+  gap: 32px;
+}
+.wr-nav-links a {
+  color: #181818;
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 1.1em;
+  transition: color 0.2s;
+}
+.wr-nav-links a:hover {
+  color: #1abc1a;
+}
+.wr-login {
+  margin-left: 24px;
+}
+.wr-login-btn {
+  background: none;
+  border: none;
+  color: #181818;
+  font-size: 1.1em;
+  font-weight: 500;
+  cursor: pointer;
+  padding: 8px 18px;
+  border-radius: 8px;
+  transition: background 0.2s;
+}
+.wr-login-btn:hover {
+  background: #f2f2f2;
+}
+
+/* Hero Section */
+.wr-hero {
+  text-align: center;
+  margin: 60px 0 40px 0;
+}
+.wr-hero-title {
+  font-size: 3.2em;
+  font-weight: 800;
+  margin-bottom: 18px;
+  letter-spacing: -1px;
+}
+.wr-hero-desc {
+  font-size: 1.25em;
+  color: #444;
+  margin-bottom: 32px;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.wr-hero-call {
+  font-size: 1.1em;
+  color: #1abc1a;
+  margin-bottom: 28px;
+  font-weight: 600;
+  letter-spacing: 0.2px;
+}
+.wr-hero-cta {
+  display: flex;
+  gap: 18px;
+  justify-content: center;
+}
+.wr-cta-btn {
+  background: #181818;
+  color: #fff;
+  border: none;
+  padding: 14px 32px;
+  border-radius: 32px;
+  font-size: 1.1em;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+  transition: background 0.2s, color 0.2s;
+}
+.wr-cta-btn.wr-cta-secondary {
+  background: #fff;
+  color: #181818;
+  border: 1.5px solid #181818;
+}
+.wr-cta-btn:hover {
+  background: #1abc1a;
+  color: #fff;
+}
+.wr-cta-btn.wr-cta-secondary:hover {
+  background: #f2f2f2;
+  color: #1abc1a;
+  border-color: #1abc1a;
+}
+
+/* Dashboard Preview */
+.wr-dashboard-preview {
+  display: flex;
+  justify-content: center;
+  margin: 40px 0 60px 0;
+}
+.wr-dashboard-card {
+  background: #fff;
+  border-radius: 24px;
+  box-shadow: 0 4px 32px rgba(0,0,0,0.08);
+  padding: 32px 36px;
+  min-width: 340px;
+  max-width: 420px;
+  width: 100%;
+}
+.wr-dashboard-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 18px;
+}
+.wr-dashboard-title {
+  font-size: 1.3em;
+  font-weight: 700;
+}
+.wr-add-reminder {
+  background: #181818;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 8px 18px;
+  font-size: 1em;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.wr-add-reminder:hover {
+  background: #1abc1a;
+}
+.wr-reminder-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.wr-reminder-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  background: #f8f8f8;
+  border-radius: 12px;
+  padding: 14px 18px;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.03);
+}
+.wr-reminder-dot {
+  width: 10px;
+  height: 10px;
+  background: #1abc1a;
+  border-radius: 50%;
+  margin-top: 7px;
+}
+.wr-reminder-title {
+  font-weight: 600;
+  font-size: 1.08em;
+}
+.wr-reminder-time {
+  font-size: 0.98em;
+  color: #666;
+}
+
+/* Features Grid */
+.wr-features-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 32px;
+  margin: 60px auto 80px auto;
+  max-width: 1100px;
+  padding: 0 24px;
+}
+.wr-feature-card {
+  background: #fff;
+  border-radius: 18px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+  padding: 32px 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 12px;
+  min-height: 180px;
+  transition: box-shadow 0.2s;
+}
+.wr-feature-card:hover {
+  box-shadow: 0 4px 24px rgba(0,0,0,0.13);
+}
+.wr-feature-icon {
+  font-size: 2em;
+  margin-bottom: 8px;
+}
+.wr-feature-title {
+  font-size: 1.15em;
+  font-weight: 700;
+}
+.wr-feature-desc {
+  font-size: 1em;
+  color: #444;
+}
+
+.wr-footer {
+  background: #f8f8f8;
+  padding: 48px 0 32px 0;
+  text-align: center;
+  border-top: 1.5px solid #e0e0e0;
+  margin-top: 60px;
+}
+.wr-footer-content {
+  max-width: 500px;
+  margin: 0 auto;
+  color: #222;
+  font-size: 1.1em;
+}
+.wr-footer-content h2 {
+  margin-bottom: 18px;
+  font-size: 1.4em;
+  font-weight: 700;
+}
+.wr-footer-content a {
+  color: #1abc1a;
+  text-decoration: none;
+  font-weight: 500;
+}
+.wr-footer-content a:hover {
+  text-decoration: underline;
+}
+.wr-footer-content div {
+  margin-bottom: 10px;
+} 

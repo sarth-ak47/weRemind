@@ -1,0 +1,266 @@
+.channel-verification {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.channel-verification h2 {
+  color: #333;
+  margin-bottom: 8px;
+  font-size: 24px;
+}
+
+.channel-verification p {
+  color: #666;
+  margin-bottom: 24px;
+  font-size: 14px;
+}
+
+.channel-section {
+  margin-bottom: 32px;
+  padding: 20px;
+  border: 1px solid #e1e5e9;
+  border-radius: 8px;
+  background: #fafbfc;
+}
+
+.channel-section h3 {
+  color: #333;
+  margin-bottom: 16px;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.verified-channel {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 16px;
+  background: #f0f9ff;
+  border: 1px solid #0ea5e9;
+  border-radius: 8px;
+  color: #0369a1;
+}
+
+.verified-icon {
+  font-size: 20px;
+}
+
+.verified-text {
+  font-weight: 500;
+  flex: 1;
+}
+
+.disconnect-btn {
+  padding: 8px 16px;
+  background: #ef4444;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.disconnect-btn:hover {
+  background: #dc2626;
+}
+
+.channel-inputs {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.input-group {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+}
+
+.input-group input {
+  flex: 1;
+  padding: 12px 16px;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  font-size: 14px;
+  transition: border-color 0.2s;
+}
+
+.input-group input:focus {
+  outline: none;
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+.input-group input:disabled {
+  background-color: #f3f4f6;
+  color: #6b7280;
+}
+
+.input-group select {
+  padding: 12px 10px;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  font-size: 14px;
+  background: #fff;
+  height: 44px;
+  min-width: 90px;
+  margin-right: 4px;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  color: #374151;
+  font-family: inherit;
+  transition: border-color 0.2s;
+}
+.input-group select:focus {
+  outline: none;
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+.input-group select:disabled {
+  background-color: #f3f4f6;
+  color: #6b7280;
+}
+
+.send-otp-btn {
+  padding: 12px 20px;
+  background: #3b82f6;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  white-space: nowrap;
+}
+
+.send-otp-btn:hover:not(:disabled) {
+  background: #2563eb;
+}
+
+.send-otp-btn:disabled {
+  background: #9ca3af;
+  cursor: not-allowed;
+}
+
+.otp-group {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+}
+
+.otp-group input {
+  flex: 1;
+  padding: 12px 16px;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  font-size: 14px;
+  text-align: center;
+  letter-spacing: 2px;
+  font-weight: 600;
+  transition: border-color 0.2s;
+}
+
+.otp-group input:focus {
+  outline: none;
+  border-color: #10b981;
+  box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.1);
+}
+
+.otp-group input:disabled {
+  background-color: #f3f4f6;
+  color: #6b7280;
+}
+
+.verify-otp-btn {
+  padding: 12px 20px;
+  background: #10b981;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  white-space: nowrap;
+}
+
+.verify-otp-btn:hover:not(:disabled) {
+  background: #059669;
+}
+
+.verify-otp-btn:disabled {
+  background: #9ca3af;
+  cursor: not-allowed;
+}
+
+.message {
+  padding: 12px 16px;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.message.success {
+  background: #f0fdf4;
+  color: #166534;
+  border: 1px solid #bbf7d0;
+}
+
+.message.error {
+  background: #fef2f2;
+  color: #dc2626;
+  border: 1px solid #fecaca;
+}
+
+.paid-badge {
+  background: #ffe0b2;
+  color: #b26a00;
+  font-size: 0.95em;
+  font-weight: 600;
+  border-radius: 6px;
+  padding: 2px 10px 2px 8px;
+  margin-left: 8px;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+.paid-disabled {
+  background: #f5f5f5 !important;
+  color: #aaa !important;
+  cursor: not-allowed !important;
+  border: 1.5px solid #e0e0e0 !important;
+}
+.paid-info {
+  color: #b26a00;
+  font-size: 0.98em;
+  margin-top: 6px;
+  font-weight: 500;
+}
+
+@media (max-width: 640px) {
+  .channel-verification {
+    padding: 16px;
+    margin: 0 16px;
+  }
+  
+  .input-group {
+    flex-direction: column;
+  }
+  
+  .otp-group {
+    flex-direction: column;
+  }
+  
+  .send-otp-btn,
+  .verify-otp-btn {
+    width: 100%;
+  }
+} 

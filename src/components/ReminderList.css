@@ -1,0 +1,80 @@
+.reminder-list-root {
+  margin-top: 18px;
+  width: 100%;
+}
+.reminder-list-title {
+  color: #7a7a7a;
+  font-size: 1.02rem;
+  font-weight: 600;
+  margin-bottom: 8px;
+  letter-spacing: 1px;
+}
+.reminder-card {
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.03);
+  display: flex;
+  align-items: center;
+  padding: 16px 18px;
+  margin-bottom: 12px;
+  min-width: 320px;
+  max-width: 480px;
+  position: relative;
+}
+.reminder-card-main {
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+.reminder-dot {
+  width: 10px;
+  height: 10px;
+  background: #2563eb;
+  border-radius: 50%;
+  margin-right: 14px;
+  margin-top: 2px;
+  flex-shrink: 0;
+}
+.reminder-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.reminder-title {
+  font-weight: 700;
+  font-size: 1.13rem;
+  margin-bottom: 2px;
+}
+.reminder-time {
+  color: #666;
+  font-size: 0.98rem;
+}
+.reminder-icons {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-left: 16px;
+}
+.reminder-icon {
+  font-size: 1.15rem;
+  color: #888;
+  cursor: pointer;
+  transition: color 0.18s;
+}
+.reminder-icon:hover {
+  color: #2563eb;
+}
+.reminder-close-btn {
+  background: none;
+  border: none;
+  color: #888;
+  font-size: 1.3em;
+  cursor: pointer;
+  margin-left: 6px;
+  padding: 0;
+  transition: color 0.2s;
+}
+.reminder-close-btn:hover {
+  color: #181818;
+} 
