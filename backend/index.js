@@ -14,7 +14,10 @@ const feedbackRoutes = require('./routes/feedback');
 
 const app = express();
 app.use(express.json());
-app.use(cors({ origin: 'http://localhost:3000', credentials: true }));
+app.use(cors({
+  origin: ['https://we-remind.vercel.app', 'http://localhost:3000'],
+  credentials: true
+}));
 
 // Register routes
 app.use('/api/otp', otpRoutes);
