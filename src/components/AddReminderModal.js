@@ -38,7 +38,10 @@ export default function AddReminderModal({ open, onClose, onAdd, userChannels, i
   const handleSubmit = (e) => {
     e.preventDefault();
     if (!title || !dateTime || selectedMethods.length === 0) return;
-    onAdd({ title, dateTime, methods: selectedMethods });
+    // Convert local datetime-local string to UTC ISO string
+    const local = new Date(dateTime);
+    const utc = new Date(local.getTime() - local.getTimezoneOffset() * 60000).toISOString();
+    onAdd({ title, dateTime: utc, methods: selectedMethods });
   };
 
   return (
