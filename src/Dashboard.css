@@ -721,3 +721,17 @@
     background: rgba(255,0,0,0.5) !important;
   }
 } 
+
+@media (max-width: 600px) {
+  .dashboard-root {
+    border: 3px solid orange !important;
+    pointer-events: auto !important;
+  }
+  .dashboard-main {
+    border: 3px solid green !important;
+    pointer-events: auto !important;
+  }
+  .dashboard-root.drawer-open .dashboard-main {
+    pointer-events: none;
+  }
+} 
