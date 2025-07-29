@@ -662,7 +662,12 @@
   }
   .dashboard-sidebar-links {
     margin-top: 24px;
-    gap: 6px;
+    gap: 2px;
+  }
+  .dashboard-sidebar-link {
+    min-height: 32px;
+    padding-top: 4px;
+    padding-bottom: 4px;
   }
 } 
 
