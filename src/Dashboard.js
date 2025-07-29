@@ -6,6 +6,7 @@ import AddReminderModal from './components/AddReminderModal';
 import ReminderList from './components/ReminderList';
 import ReminderDetailsModal from './components/ReminderDetailsModal';
 import './Dashboard.css';
+import { FaBars } from 'react-icons/fa';
 
 function ChannelConnectModal({ type, onClose, onRegistered, registeredValue }) {
   const [value, setValue] = useState('');
@@ -272,6 +273,7 @@ export default function Dashboard() {
   const [reminders, setReminders] = useState([]);
   const [editingReminder, setEditingReminder] = useState(null);
   const [detailsReminder, setDetailsReminder] = useState(null);
+  const [drawerOpen, setDrawerOpen] = useState(false);
 
   useEffect(() => {
     if (!currentUser) {
@@ -340,7 +342,24 @@ export default function Dashboard() {
 
   return (
     <div className={`dashboard-root${darkMode ? ' dark' : ''}`}>
-      <aside className="dashboard-sidebar">
+      {/* Hamburger for mobile */}
+      <button
+        className="dashboard-hamburger"
+        onClick={() => setDrawerOpen(true)}
+        aria-label="Open navigation menu"
+        style={{ display: 'none' }}
+      >
+        <FaBars size={24} />
+      </button>
+      {/* Sidebar as drawer on mobile */}
+      <aside className={`dashboard-sidebar${drawerOpen ? ' open' : ''}`}>
+        <button
+          className="dashboard-drawer-close"
+          onClick={() => setDrawerOpen(false)}
+          aria-label="Close navigation menu"
+        >
+          ×
+        </button>
         <div className="dashboard-logo-area">
           <div className="dashboard-logo">wR</div>
           <span className="dashboard-site-name">weRemind</span>
