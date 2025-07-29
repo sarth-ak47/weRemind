@@ -631,3 +631,30 @@
     align-items: center;
   }
 } 
+
+/* Drawer overlay styles */
+.dashboard-drawer-overlay {
+  display: none;
+}
+@media (max-width: 600px) {
+  .dashboard-hamburger {
+    display: block;
+    position: fixed;
+    top: 16px;
+    left: 16px;
+    background: none;
+    border: none;
+    z-index: 1201;
+    color: #222;
+  }
+  .dashboard-drawer-overlay {
+    display: block;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0,0,0,0.25);
+    z-index: 1199;
+  }
+} 

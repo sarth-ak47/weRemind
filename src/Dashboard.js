@@ -342,15 +342,21 @@ export default function Dashboard() {
 
   return (
     <div className={`dashboard-root${darkMode ? ' dark' : ''}`}>
-      {/* Hamburger for mobile */}
+      {/* Hamburger for mobile - always visible at top left on mobile */}
       <button
         className="dashboard-hamburger"
         onClick={() => setDrawerOpen(true)}
         aria-label="Open navigation menu"
-        style={{ display: 'none' }}
       >
         <FaBars size={24} />
       </button>
+      {/* Overlay for drawer on mobile */}
+      {drawerOpen && (
+        <div
+          className="dashboard-drawer-overlay"
+          onClick={() => setDrawerOpen(false)}
+        />
+      )}
       {/* Sidebar as drawer on mobile */}
       <aside className={`dashboard-sidebar${drawerOpen ? ' open' : ''}`}>
         <button
