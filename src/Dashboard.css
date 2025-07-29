@@ -706,6 +706,7 @@
   }
 } 
 
+/* Only block pointer events on main content when sidebar is open */
 @media (max-width: 600px) {
   .dashboard-root.drawer-open .dashboard-main {
     pointer-events: none;
