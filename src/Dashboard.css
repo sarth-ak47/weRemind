@@ -711,6 +711,9 @@
   .dashboard-root.drawer-open .dashboard-main {
     pointer-events: none;
   }
+  .dashboard-main {
+    border: 3px solid green !important;
+  }
 } 
 
 @media (max-width: 600px) {
