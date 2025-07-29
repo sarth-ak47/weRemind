@@ -615,7 +615,7 @@
     box-sizing: border-box;
     display: flex;
     flex-direction: column;
-    gap: 12px;
+    gap: 8px;
     /* Add slide animation */
     transform: translateX(-100%);
     transition: transform 0.3s ease;
@@ -644,14 +644,25 @@
   }
   .dashboard-nav-item, .dashboard-sidebar-link {
     font-size: 1em;
-    min-height: 44px;
+    min-height: 40px;
     display: flex;
     align-items: center;
     padding-left: 4px;
     padding-right: 4px;
   }
   .dashboard-logo-area {
-    margin-bottom: 12px;
+    margin-bottom: 8px;
+  }
+  .dashboard-reminders-usage {
+    margin: 16px 24px 0 24px;
+    padding: 10px 14px;
+  }
+  .dashboard-user-section {
+    margin: 24px 24px 0 24px;
+  }
+  .dashboard-sidebar-links {
+    margin-top: 24px;
+    gap: 6px;
   }
 } 
 
