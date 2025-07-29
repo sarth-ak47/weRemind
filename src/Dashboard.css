@@ -589,6 +589,13 @@
     z-index: 1201;
     color: #222;
   }
+  /* Hide hamburger when drawer is open */
+  .dashboard-root.drawer-open .dashboard-hamburger {
+    display: none;
+  }
+  .dashboard-drawer-close {
+    display: block;
+  }
   .dashboard-sidebar {
     position: fixed;
     top: 0;
