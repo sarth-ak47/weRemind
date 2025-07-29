@@ -616,9 +616,12 @@
     display: flex;
     flex-direction: column;
     gap: 12px;
+    /* Add slide animation */
+    transform: translateX(-100%);
+    transition: transform 0.3s ease;
   }
   .dashboard-sidebar.open {
-    /* No transform needed */
+    transform: translateX(0);
   }
   .dashboard-drawer-overlay {
     display: block;
@@ -630,6 +633,7 @@
     background: rgba(0,0,0,0.25);
     z-index: 1199;
     pointer-events: auto;
+    cursor: pointer;
   }
   .dashboard-root.drawer-open {
     overflow: hidden;
