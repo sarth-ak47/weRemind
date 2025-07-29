@@ -507,3 +507,46 @@
 .dashboard-root.dark .modal-close {
   color: #bbb;
 } 
+
+/* Responsive styles for mobile */
+@media (max-width: 600px) {
+  .dashboard-root {
+    flex-direction: column;
+    height: auto;
+  }
+  .dashboard-sidebar {
+    width: 100%;
+    min-width: 0;
+    padding: 12px 0 0 0;
+    border-right: none;
+    border-bottom: 1px solid #ececec;
+    flex-direction: row;
+    overflow-x: auto;
+  }
+  .dashboard-logo-area {
+    padding: 0 12px 12px 12px;
+  }
+  .dashboard-main {
+    align-items: stretch;
+    justify-content: flex-start;
+    padding: 0;
+  }
+  .dashboard-reminders-card {
+    min-width: 0;
+    width: 100%;
+    padding: 16px 8px;
+    border-radius: 10px;
+  }
+  .channels-root {
+    min-width: 0;
+    width: 100%;
+    padding: 16px 0 0 0;
+  }
+  .channels-card {
+    min-width: 0;
+    width: 100%;
+    padding: 12px 8px;
+    flex-direction: column;
+    gap: 10px;
+  }
+} 
