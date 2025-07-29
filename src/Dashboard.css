@@ -606,7 +606,9 @@
     border-top-right-radius: 18px;
     border-bottom-right-radius: 18px;
     box-sizing: border-box;
-    /* Remove transform and transition for no slide-in */
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
   }
   .dashboard-sidebar.open {
     /* No transform needed */
