@@ -593,7 +593,6 @@
     position: fixed;
     top: 0;
     left: 0;
-    height: 100vh;
     width: 70vw;
     max-width: 320px;
     min-width: 0;
@@ -606,6 +605,7 @@
     flex-direction: column;
     padding: 48px 18px 18px 18px;
     overflow-y: auto;
+    max-height: 100vh;
     border-top-right-radius: 18px;
     border-bottom-right-radius: 18px;
   }
@@ -668,8 +668,7 @@
   }
   .dashboard-root.drawer-open {
     overflow: hidden;
-    height: 100vh;
-    position: fixed;
+    /* Remove position: fixed and height: 100vh to allow sidebar scrolling */
     width: 100vw;
   }
   .dashboard-main {
