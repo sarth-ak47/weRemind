@@ -343,13 +343,15 @@ export default function Dashboard() {
   return (
     <div className={`dashboard-root${darkMode ? ' dark' : ''}`}>
       {/* Hamburger for mobile - always visible at top left on mobile */}
-      <button
-        className="dashboard-hamburger"
-        onClick={() => setDrawerOpen(true)}
-        aria-label="Open navigation menu"
-      >
-        <FaBars size={24} />
-      </button>
+      {!drawerOpen && (
+        <button
+          className="dashboard-hamburger"
+          onClick={() => setDrawerOpen(true)}
+          aria-label="Open navigation menu"
+        >
+          <FaBars size={24} />
+        </button>
+      )}
       {/* Overlay for drawer on mobile */}
       {drawerOpen && (
         <div
