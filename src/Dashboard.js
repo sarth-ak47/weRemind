@@ -341,7 +341,7 @@ export default function Dashboard() {
   };
 
   return (
-    <div className={`dashboard-root${darkMode ? ' dark' : ''}`}>
+    <div className={`dashboard-root${darkMode ? ' dark' : ''}${drawerOpen ? ' drawer-open' : ''}`}>
       {/* Hamburger for mobile - always visible at top left on mobile */}
       {!drawerOpen && (
         <button
@@ -374,8 +374,8 @@ export default function Dashboard() {
         </div>
         <nav className="dashboard-nav">
           <div className="dashboard-nav-section">
-            <div className={`dashboard-nav-item${selectedPage === 'reminders' ? ' active' : ''}`} onClick={() => setSelectedPage('reminders')}>Upcoming Reminders</div>
-            <div className={`dashboard-nav-item${selectedPage === 'channels' ? ' active' : ''}`} onClick={() => setSelectedPage('channels')}>Notification Channels</div>
+            <div className={`dashboard-nav-item${selectedPage === 'reminders' ? ' active' : ''}`} onClick={() => { setSelectedPage('reminders'); setDrawerOpen(false); }}>Upcoming Reminders</div>
+            <div className={`dashboard-nav-item${selectedPage === 'channels' ? ' active' : ''}`} onClick={() => { setSelectedPage('channels'); setDrawerOpen(false); }}>Notification Channels</div>
             <div className="dashboard-nav-item disabled">Integrations <span className="soon">Soon</span></div>
             <div className="dashboard-nav-item disabled">Analytics <span className="soon">Soon</span></div>
           </div>
@@ -395,11 +395,11 @@ export default function Dashboard() {
           </div>
         </div>
         <div className="dashboard-sidebar-links">
-          <div className="dashboard-sidebar-link" onClick={() => setSelectedPage('feedback')}>Feedback</div>
-          <div className="dashboard-sidebar-link" onClick={() => setSelectedPage('settings')}>Settings</div>
-          <div className="dashboard-sidebar-link" onClick={() => navigate('/')}>Home</div>
-          <div className="dashboard-sidebar-link" onClick={() => setDarkMode(dm => !dm)}>{darkMode ? 'Light Mode' : 'Dark Mode'}</div>
-          <div className="dashboard-sidebar-link" onClick={logout}>Logout</div>
+          <div className="dashboard-sidebar-link" onClick={() => { setSelectedPage('feedback'); setDrawerOpen(false); }}>Feedback</div>
+          <div className="dashboard-sidebar-link" onClick={() => { setSelectedPage('settings'); setDrawerOpen(false); }}>Settings</div>
+          <div className="dashboard-sidebar-link" onClick={() => { navigate('/'); setDrawerOpen(false); }}>Home</div>
+          <div className="dashboard-sidebar-link" onClick={() => { setDarkMode(dm => !dm); setDrawerOpen(false); }}>{darkMode ? 'Light Mode' : 'Dark Mode'}</div>
+          <div className="dashboard-sidebar-link" onClick={() => { logout(); setDrawerOpen(false); }}>Logout</div>
         </div>
       </aside>
       {selectedPage === 'reminders' ? (

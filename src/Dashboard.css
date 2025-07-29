@@ -664,5 +664,15 @@
     height: 100vh;
     background: rgba(0,0,0,0.25);
     z-index: 1199;
+    pointer-events: auto;
+  }
+  .dashboard-root.drawer-open {
+    overflow: hidden;
+    height: 100vh;
+    position: fixed;
+    width: 100vw;
+  }
+  .dashboard-main {
+    pointer-events: none;
   }
 } 
