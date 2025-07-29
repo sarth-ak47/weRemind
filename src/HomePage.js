@@ -64,6 +64,12 @@ function NavBar({ onContactClick, onHomeClick, onLogin, onLogout, user, mobileMe
   const navigate = useNavigate();
   return (
     <nav className="wr-navbar">
+      {/* Logo - always visible */}
+      <div className="wr-logo-area">
+        <div className="wr-logo">wR</div>
+        <span className="wr-site-name">weRemind</span>
+      </div>
+      
       {/* Hamburger for mobile */}
       {!mobileMenuOpen && (
         <button
@@ -74,6 +80,7 @@ function NavBar({ onContactClick, onHomeClick, onLogin, onLogout, user, mobileMe
           <FaBars size={24} />
         </button>
       )}
+      
       {/* Mobile menu overlay */}
       {mobileMenuOpen && (
         <div
@@ -81,6 +88,7 @@ function NavBar({ onContactClick, onHomeClick, onLogin, onLogout, user, mobileMe
           onClick={() => setMobileMenuOpen(false)}
         />
       )}
+      
       {/* Mobile menu */}
       <div className={`wr-mobile-menu${mobileMenuOpen ? ' open' : ''}`}>
         <button
@@ -91,10 +99,6 @@ function NavBar({ onContactClick, onHomeClick, onLogin, onLogout, user, mobileMe
           ×
         </button>
         <div className="wr-mobile-menu-content">
-          <div className="wr-mobile-logo-area">
-            <div className="wr-logo">wR</div>
-            <span className="wr-site-name">weRemind</span>
-          </div>
           <div className="wr-mobile-nav-links">
             <a href="#home" onClick={onHomeClick}>Home</a>
             <a href="#contact" onClick={onContactClick}>Contact</a>
@@ -114,12 +118,9 @@ function NavBar({ onContactClick, onHomeClick, onLogin, onLogout, user, mobileMe
           </div>
         </div>
       </div>
+      
       {/* Desktop navbar */}
       <div className="wr-desktop-nav">
-        <div className="wr-logo-area">
-          <div className="wr-logo">wR</div>
-          <span className="wr-site-name">weRemind</span>
-        </div>
         <div className="wr-nav-links">
           <a href="#home" onClick={onHomeClick}>Home</a>
           <a href="#contact" onClick={onContactClick}>Contact</a>
