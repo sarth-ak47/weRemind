@@ -45,10 +45,19 @@ export default function AddReminderModal({ open, onClose, onAdd, userChannels, i
     e.preventDefault();
     if (!title || !dateTime || selectedMethods.length === 0) return;
     
+    // Debug: Log the input datetime
+    console.log('Input datetime-local value:', dateTime);
+    
     // Convert datetime-local string to UTC ISO string correctly
     // datetime-local gives us local time, we need to convert to UTC
     const localDateTime = new Date(dateTime);
+    console.log('Local DateTime object:', localDateTime);
+    console.log('Local DateTime ISO string:', localDateTime.toISOString());
+    console.log('Timezone offset (minutes):', localDateTime.getTimezoneOffset());
+    
     const utcDateTime = new Date(localDateTime.getTime() + localDateTime.getTimezoneOffset() * 60000);
+    console.log('UTC DateTime object:', utcDateTime);
+    console.log('UTC DateTime ISO string:', utcDateTime.toISOString());
     
     onAdd({ title, dateTime: utcDateTime.toISOString(), methods: selectedMethods });
   };
