@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 
 const reminderSchema = new mongoose.Schema({
+  userId: { type: String, required: true }, // Add user ID field
   title: { type: String, required: true },
   dateTime: { type: Date, required: true },
   methods: [{ type: String, enum: ['email', 'phone', 'whatsapp'] }],

@@ -306,7 +306,7 @@ export default function Dashboard() {
   useEffect(() => {
     async function fetchUpcomingReminders() {
       try {
-        const res = await fetch('https://weremind.onrender.com/api/reminders');
+        const res = await fetch(`https://weremind.onrender.com/api/reminders/user/${currentUser.uid}`);
         const data = await res.json();
         
         // Filter to only upcoming reminders (dateTime in the future)
@@ -318,7 +318,7 @@ export default function Dashboard() {
       }
     }
     fetchUpcomingReminders();
-  }, []);
+  }, [currentUser]);
 
   // Helper to check if a date is today
   function isToday(date) {
@@ -335,10 +335,21 @@ export default function Dashboard() {
   if (!currentUser) return null;
 
   const handleDeleteReminder = async (reminder) => {
-    // Remove from backend
-    await fetch(`https://weremind.onrender.com/api/reminders/${reminder._id || reminder.id}`, { method: 'DELETE' });
-    // Remove from UI
-    setReminders(prev => prev.filter(r => (r._id || r.id) !== (reminder._id || reminder.id)));
+    try {
+      // Remove from backend with user verification
+      const res = await fetch(`https://weremind.onrender.com/api/reminders/${reminder._id || reminder.id}`, { 
+        method: 'DELETE',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ userId: currentUser.uid })
+      });
+      
+      if (res.ok) {
+        // Remove from UI
+        setReminders(prev => prev.filter(r => (r._id || r.id) !== (reminder._id || reminder.id)));
+      }
+    } catch (error) {
+      console.error('Error deleting reminder:', error);
+    }
   };
 
   return (
@@ -460,7 +471,7 @@ export default function Dashboard() {
                 const res = await fetch('https://weremind.onrender.com/api/reminders', {
                   method: 'POST',
                   headers: { 'Content-Type': 'application/json' },
-                  body: JSON.stringify(payload)
+                  body: JSON.stringify({ ...payload, userId: currentUser.uid })
                 });
                 const data = await res.json();
                 if (res.ok) {
