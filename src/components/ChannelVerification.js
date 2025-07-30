@@ -285,6 +285,22 @@ const ChannelVerification = () => {
             {message && (
               <div className={`message ${message.includes('successfully') ? 'success' : 'error'}`}>
                 {message}
+                {message.includes('unverified') && message.includes('twilio.com') && (
+                  <div style={{ marginTop: '8px' }}>
+                    <a 
+                      href="https://twilio.com/user/account/phone-numbers/verified" 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      style={{ 
+                        color: '#2563eb', 
+                        textDecoration: 'underline',
+                        fontWeight: '500'
+                      }}
+                    >
+                      🔗 Click here to verify your number on Twilio
+                    </a>
+                  </div>
+                )}
               </div>
             )}
             
