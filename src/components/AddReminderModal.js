@@ -48,18 +48,23 @@ export default function AddReminderModal({ open, onClose, onAdd, userChannels, i
     // Debug: Log the input datetime
     console.log('Input datetime-local value:', dateTime);
     
-    // Convert datetime-local string to UTC ISO string correctly
-    // datetime-local gives us local time, we need to convert to UTC
-    const localDateTime = new Date(dateTime);
-    console.log('Local DateTime object:', localDateTime);
-    console.log('Local DateTime ISO string:', localDateTime.toISOString());
-    console.log('Timezone offset (minutes):', localDateTime.getTimezoneOffset());
+    // datetime-local gives us local time in the format "YYYY-MM-DDTHH:mm"
+    // We need to convert this to UTC
+    const [datePart, timePart] = dateTime.split('T');
+    const [year, month, day] = datePart.split('-').map(Number);
+    const [hours, minutes] = timePart.split(':').map(Number);
     
-    const utcDateTime = new Date(localDateTime.getTime() + localDateTime.getTimezoneOffset() * 60000);
-    console.log('UTC DateTime object:', utcDateTime);
-    console.log('UTC DateTime ISO string:', utcDateTime.toISOString());
+    // Create a Date object in local time
+    const localDate = new Date(year, month - 1, day, hours, minutes);
+    console.log('Local Date object:', localDate);
+    console.log('Local Date ISO string:', localDate.toISOString());
     
-    onAdd({ title, dateTime: utcDateTime.toISOString(), methods: selectedMethods });
+    // Convert to UTC
+    const utcDate = new Date(localDate.getTime() - localDate.getTimezoneOffset() * 60000);
+    console.log('UTC Date object:', utcDate);
+    console.log('UTC Date ISO string:', utcDate.toISOString());
+    
+    onAdd({ title, dateTime: utcDate.toISOString(), methods: selectedMethods });
   };
 
   return (
