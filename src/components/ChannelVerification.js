@@ -121,9 +121,16 @@ const ChannelVerification = () => {
           [channelType]: `OTP sent to ${contact}`
         }));
       } else {
+        let errorMessage = data.error || 'Failed to send OTP';
+        
+        // Provide better guidance for phone verification issues
+        if (channelType === 'phone' && errorMessage.includes('unverified')) {
+          errorMessage = 'Phone verification requires a verified Twilio account. For now, please use Email notifications which work immediately.';
+        }
+        
         setMessages(prev => ({
           ...prev,
-          [channelType]: data.error || 'Failed to send OTP'
+          [channelType]: errorMessage
         }));
       }
     } catch (error) {
@@ -207,46 +214,27 @@ const ChannelVerification = () => {
     const message = messages[channelType];
 
     return (
-      <div className="channel-section">
+      <div key={channelType} className="channel-section">
         <h3>{label}</h3>
-        
+        {channelType === 'phone' && (
+          <div style={{ 
+            fontSize: '0.9em', 
+            color: '#666', 
+            marginBottom: '12px', 
+            padding: '8px 12px',
+            backgroundColor: '#f8f9fa',
+            borderRadius: '6px',
+            border: '1px solid #e9ecef'
+          }}>
+            💡 <strong>Note:</strong> Phone verification works best with verified Twilio accounts. For immediate setup, we recommend using Email notifications.
+          </div>
+        )}
         {isVerified ? (
           <div className="verified-channel">
-            <span className="verified-icon">✅</span>
-            <span className="verified-text">Connected: {isVerified}</span>
-            <button 
+            <span>✅ {isVerified}</span>
+            <button
+              onClick={() => disconnectChannel(channelType)}
               className="disconnect-btn"
-              onClick={async () => {
-                try {
-                  const response = await fetch(
-                    `https://weremind.onrender.com/api/otp/disconnect-channel/${currentUser.uid}/${channelType}`,
-                    { method: 'DELETE' }
-                  );
-                  
-                  if (response.ok) {
-                    setVerifiedChannels(prev => {
-                      const updated = { ...prev };
-                      delete updated[channelType];
-                      return updated;
-                    });
-                    setMessages(prev => ({
-                      ...prev,
-                      [channelType]: 'Channel disconnected successfully'
-                    }));
-                  } else {
-                    setMessages(prev => ({
-                      ...prev,
-                      [channelType]: 'Failed to disconnect channel'
-                    }));
-                  }
-                } catch (error) {
-                  console.error('Error disconnecting channel:', error);
-                  setMessages(prev => ({
-                    ...prev,
-                    [channelType]: 'Failed to disconnect channel'
-                  }));
-                }
-              }}
             >
               Disconnect
             </button>

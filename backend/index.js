@@ -62,15 +62,20 @@ cron.schedule('* * * * *', async () => {
       reminder.sentStatus.email = true;
       anySent = true;
     }
-    // Phone (call)
+    // Phone (SMS instead of call for better reliability)
     if (reminder.methods.includes('phone') && reminder.phone && !reminder.sentStatus.phone) {
-      await twilioClient.calls.create({
-        twiml: `<Response><Say voice="alice">This is your reminder: ${reminder.title}</Say></Response>`,
-        to: reminder.phone,
-        from: twilioPhone
-      });
-      reminder.sentStatus.phone = true;
-      anySent = true;
+      try {
+        await twilioClient.messages.create({
+          body: `Your reminder: ${reminder.title}`,
+          from: twilioPhone, // Use your verified Twilio number
+          to: reminder.phone
+        });
+        reminder.sentStatus.phone = true;
+        anySent = true;
+      } catch (error) {
+        console.error('SMS sending failed:', error.message);
+        // Don't mark as sent if SMS fails
+      }
     }
     // WhatsApp (optional, can send message)
     if (reminder.methods.includes('whatsapp') && reminder.whatsapp && !reminder.sentStatus.whatsapp) {
