@@ -70,7 +70,10 @@
   background: #f8f8f8;
 }
 .wr-login {
-  margin-left: 24px;
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  gap: 16px;
 }
 .wr-login-btn {
   background: none;

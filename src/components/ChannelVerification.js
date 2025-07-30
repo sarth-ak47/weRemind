@@ -121,9 +121,35 @@ const ChannelVerification = () => {
           [channelType]: `OTP sent to ${contact}`
         }));
       } else {
+        let errorMessage = data.error || 'Failed to send OTP';
+        
+        // Check if it's a Twilio unverified number error
+        if (errorMessage.includes('unverified') || errorMessage.includes('trial account')) {
+          const twilioVerifyUrl = 'https://console.twilio.com/us1/develop/phone-numbers/manage/verified';
+          errorMessage = (
+            <div>
+              <div>{errorMessage}</div>
+              <div style={{ marginTop: '8px' }}>
+                <a 
+                  href={twilioVerifyUrl} 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  style={{ 
+                    color: '#3b82f6', 
+                    textDecoration: 'underline',
+                    fontWeight: '500'
+                  }}
+                >
+                  🔗 Click here to verify your number on Twilio
+                </a>
+              </div>
+            </div>
+          );
+        }
+        
         setMessages(prev => ({
           ...prev,
-          [channelType]: data.error || 'Failed to send OTP'
+          [channelType]: errorMessage
         }));
       }
     } catch (error) {
@@ -285,22 +311,6 @@ const ChannelVerification = () => {
             {message && (
               <div className={`message ${message.includes('successfully') ? 'success' : 'error'}`}>
                 {message}
-                {message.includes('unverified') && message.includes('twilio.com') && (
-                  <div style={{ marginTop: '8px' }}>
-                    <a 
-                      href="https://twilio.com/user/account/phone-numbers/verified" 
-                      target="_blank" 
-                      rel="noopener noreferrer"
-                      style={{ 
-                        color: '#2563eb', 
-                        textDecoration: 'underline',
-                        fontWeight: '500'
-                      }}
-                    >
-                      🔗 Click here to verify your number on Twilio
-                    </a>
-                  </div>
-                )}
               </div>
             )}
             
