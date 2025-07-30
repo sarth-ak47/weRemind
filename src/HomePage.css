@@ -49,6 +49,9 @@
 .wr-nav-links {
   display: flex;
   gap: 32px;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
 }
 .wr-nav-links a {
   color: #181818;
