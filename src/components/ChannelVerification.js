@@ -125,7 +125,9 @@ const ChannelVerification = () => {
         
         // Provide better guidance for phone verification issues
         if (channelType === 'phone' && errorMessage.includes('unverified')) {
-          errorMessage = 'Phone verification requires a verified Twilio account. For now, please use Email notifications which work immediately.';
+          const phoneNumber = contact.replace('+', '');
+          const twilioVerificationUrl = `https://twilio.com/user/account/phone-numbers/verified`;
+          errorMessage = `Phone verification requires a verified Twilio account. Please verify your number at: ${twilioVerificationUrl}`;
         }
         
         setMessages(prev => ({

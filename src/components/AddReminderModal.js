@@ -93,7 +93,7 @@ export default function AddReminderModal({ open, onClose, onAdd, userChannels, i
                   onClick={() => handleMethodToggle(ch.channelType)}
                 >
                   {ch.channelType === 'email' && <span>📧 Email</span>}
-                  {ch.channelType === 'phone' && <span>📱 Phone (SMS)</span>}
+                  {ch.channelType === 'phone' && <span>📱 Phone (Call)</span>}
                   {ch.channelType === 'whatsapp' && <span>💬 WhatsApp</span>}
                 </button>
               ))
