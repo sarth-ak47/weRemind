@@ -55,13 +55,14 @@
   text-decoration: none;
   font-weight: 500;
   font-size: 1.1em;
-  padding: 8px 12px;
-  border-radius: 6px;
-  margin: 0 4px;
-  transition: color 0.2s;
+  padding: 12px 16px;
+  border-radius: 8px;
+  margin: 0 6px;
+  transition: color 0.2s, background 0.2s;
 }
 .wr-nav-links a:hover {
   color: #1abc1a;
+  background: #f8f8f8;
 }
 .wr-login {
   margin-left: 24px;
@@ -73,9 +74,9 @@
   font-size: 1.1em;
   font-weight: 500;
   cursor: pointer;
-  padding: 12px 20px;
+  padding: 14px 24px;
   border-radius: 8px;
-  margin: 0 4px;
+  margin: 0 6px;
   transition: background 0.2s;
 }
 .wr-login-btn:hover {
@@ -117,13 +118,14 @@
   background: #181818;
   color: #fff;
   border: none;
-  padding: 14px 32px;
+  padding: 16px 36px;
   border-radius: 32px;
   font-size: 1.1em;
   font-weight: 600;
   cursor: pointer;
   box-shadow: 0 2px 8px rgba(0,0,0,0.07);
   transition: background 0.2s, color 0.2s;
+  margin: 0 8px;
 }
 .wr-cta-btn.wr-cta-secondary {
   background: #fff;
@@ -169,11 +171,12 @@
   color: #fff;
   border: none;
   border-radius: 8px;
-  padding: 8px 18px;
+  padding: 12px 20px;
   font-size: 1em;
   font-weight: 500;
   cursor: pointer;
   transition: background 0.2s;
+  margin: 0 4px;
 }
 .wr-add-reminder:hover {
   background: #1abc1a;
