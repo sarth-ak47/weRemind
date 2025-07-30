@@ -64,18 +64,13 @@ cron.schedule('* * * * *', async () => {
     }
     // Phone (call)
     if (reminder.methods.includes('phone') && reminder.phone && !reminder.sentStatus.phone) {
-      try {
-        await twilioClient.calls.create({
-          twiml: `<Response><Say voice="alice">This is your reminder: ${reminder.title}</Say></Response>`,
-          to: reminder.phone,
-          from: twilioPhone
-        });
-        reminder.sentStatus.phone = true;
-        anySent = true;
-      } catch (error) {
-        console.error('Voice call failed:', error.message);
-        // Don't mark as sent if call fails
-      }
+      await twilioClient.calls.create({
+        twiml: `<Response><Say voice="alice">This is your reminder: ${reminder.title}</Say></Response>`,
+        to: reminder.phone,
+        from: twilioPhone
+      });
+      reminder.sentStatus.phone = true;
+      anySent = true;
     }
     // WhatsApp (optional, can send message)
     if (reminder.methods.includes('whatsapp') && reminder.whatsapp && !reminder.sentStatus.whatsapp) {

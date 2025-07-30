@@ -88,11 +88,7 @@ router.post('/send-otp', async (req, res) => {
         console.log('SMS sent successfully');
       } catch (smsError) {
         console.error('Detailed SMS error:', smsError);
-        if (smsError.code === 21211 || smsError.message.includes('unverified')) {
-          throw new Error(`Failed to send SMS: The number ${contact} is unverified. Please verify your number at: https://twilio.com/user/account/phone-numbers/verified`);
-        } else {
-          throw new Error(`Failed to send SMS: ${smsError.message}`);
-        }
+        throw new Error(`Failed to send SMS: ${smsError.message}`);
       }
     } else if (channelType === 'whatsapp') {
       // Send OTP via WhatsApp using Twilio

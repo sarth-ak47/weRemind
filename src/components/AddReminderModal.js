@@ -93,17 +93,12 @@ export default function AddReminderModal({ open, onClose, onAdd, userChannels, i
                   onClick={() => handleMethodToggle(ch.channelType)}
                 >
                   {ch.channelType === 'email' && <span>📧 Email</span>}
-                  {ch.channelType === 'phone' && <span>📱 Phone (Call)</span>}
+                  {ch.channelType === 'phone' && <span>📱 Phone</span>}
                   {ch.channelType === 'whatsapp' && <span>💬 WhatsApp</span>}
                 </button>
               ))
             )}
           </div>
-          {verifiedChannels.some(ch => ch.channelType === 'phone') && (
-            <div style={{ fontSize: '0.9em', color: '#666', marginTop: '8px', fontStyle: 'italic' }}>
-              💡 Phone notifications work best with verified numbers. Email is recommended for new users.
-            </div>
-          )}
           <button
             type="submit"
             className="add-btn"

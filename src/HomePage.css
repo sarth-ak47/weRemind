@@ -49,6 +49,8 @@
 .wr-nav-links {
   display: flex;
   gap: 32px;
+  margin-left: auto;
+  margin-right: auto;
   position: absolute;
   left: 50%;
   transform: translateX(-50%);
