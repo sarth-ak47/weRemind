@@ -55,6 +55,8 @@
   color: #222;
   cursor: pointer;
   margin-bottom: 2px;
+  margin-left: 4px;
+  margin-right: 4px;
   transition: background 0.2s;
 }
 .dashboard-nav-item.active {
@@ -78,7 +80,7 @@
   background: #f8f8f8;
   border-radius: 10px;
   margin: 24px 24px 0 24px;
-  padding: 12px 16px;
+  padding: 16px 20px;
   font-size: 0.95rem;
   box-shadow: 0 1px 2px rgba(0,0,0,0.01);
 }
@@ -132,10 +134,12 @@
   padding: 0 24px;
 }
 .dashboard-sidebar-link {
-  color: #222;
-  font-size: 1rem;
+  padding: 8px 12px;
+  color: #666;
   cursor: pointer;
-  padding: 8px 0;
+  font-size: 0.95rem;
+  margin-left: 4px;
+  margin-right: 4px;
   border-radius: 6px;
   transition: background 0.2s;
 }
@@ -151,14 +155,11 @@
 }
 .dashboard-reminders-card {
   background: #fff;
-  border-radius: 18px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
-  padding: 48px 64px;
-  min-width: 420px;
-  min-height: 320px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  border-radius: 16px;
+  padding: 24px 28px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.04);
+  margin: 24px;
+  border: 1px solid #f0f0f0;
 }
 .dashboard-reminders-card h2 {
   font-size: 1.5rem;
@@ -235,15 +236,15 @@
 }
 .channels-card {
   background: #fff;
-  border-radius: 14px;
-  box-shadow: 0 1px 4px rgba(0,0,0,0.03);
+  border: 1px solid #e8e8e8;
+  border-radius: 12px;
+  padding: 20px 24px;
   display: flex;
   align-items: center;
-  padding: 20px 28px;
-  gap: 18px;
-  min-width: 400px;
-  min-height: 70px;
-  position: relative;
+  gap: 16px;
+  margin-bottom: 12px;
+  transition: all 0.2s;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.02);
 }
 .channels-card.disabled {
   /* opacity: 0.6; */
