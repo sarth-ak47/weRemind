@@ -239,7 +239,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 If you encounter any issues or have questions:
 
 - **Create** an issue on GitHub
-- **Email** support at support@weremind.com
+- **Email** support at sarthakvarsh9696@gmail.com
 - **Check** the documentation for common solutions
 
 ## 🔄 Version History
