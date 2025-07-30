@@ -14,8 +14,14 @@ export default function AddReminderModal({ open, onClose, onAdd, userChannels, i
       if (initial?.dateTime) {
         const dt = new Date(initial.dateTime);
         if (!isNaN(dt.getTime())) {
-          // Format to yyyy-MM-ddTHH:mm
-          formattedDateTime = dt.toISOString().slice(0, 16);
+          // Format to yyyy-MM-ddTHH:mm for datetime-local input
+          // This converts UTC to local time correctly
+          const year = dt.getFullYear();
+          const month = String(dt.getMonth() + 1).padStart(2, '0');
+          const day = String(dt.getDate()).padStart(2, '0');
+          const hours = String(dt.getHours()).padStart(2, '0');
+          const minutes = String(dt.getMinutes()).padStart(2, '0');
+          formattedDateTime = `${year}-${month}-${day}T${hours}:${minutes}`;
         } else {
           formattedDateTime = '';
         }
@@ -38,10 +44,13 @@ export default function AddReminderModal({ open, onClose, onAdd, userChannels, i
   const handleSubmit = (e) => {
     e.preventDefault();
     if (!title || !dateTime || selectedMethods.length === 0) return;
-    // Convert local datetime-local string to UTC ISO string
-    const local = new Date(dateTime);
-    const utc = new Date(local.getTime() - local.getTimezoneOffset() * 60000).toISOString();
-    onAdd({ title, dateTime: utc, methods: selectedMethods });
+    
+    // Convert datetime-local string to UTC ISO string correctly
+    // datetime-local gives us local time, we need to convert to UTC
+    const localDateTime = new Date(dateTime);
+    const utcDateTime = new Date(localDateTime.getTime() + localDateTime.getTimezoneOffset() * 60000);
+    
+    onAdd({ title, dateTime: utcDateTime.toISOString(), methods: selectedMethods });
   };
 
   return (
