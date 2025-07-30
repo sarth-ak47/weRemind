@@ -207,6 +207,38 @@ const ChannelVerification = () => {
     }
   };
 
+  const disconnectChannel = async (channelType) => {
+    try {
+      const response = await fetch(
+        `https://weremind.onrender.com/api/otp/disconnect-channel/${currentUser.uid}/${channelType}`,
+        { method: 'DELETE' }
+      );
+      
+      if (response.ok) {
+        setVerifiedChannels(prev => {
+          const updated = { ...prev };
+          delete updated[channelType];
+          return updated;
+        });
+        setMessages(prev => ({
+          ...prev,
+          [channelType]: 'Channel disconnected successfully'
+        }));
+      } else {
+        setMessages(prev => ({
+          ...prev,
+          [channelType]: 'Failed to disconnect channel'
+        }));
+      }
+    } catch (error) {
+      console.error('Error disconnecting channel:', error);
+      setMessages(prev => ({
+        ...prev,
+        [channelType]: 'Failed to disconnect channel'
+      }));
+    }
+  };
+
   const renderChannelSection = (channelType, label, placeholder) => {
     const isVerified = verifiedChannels[channelType];
     const contact = channels[channelType];
