@@ -308,22 +308,12 @@ export default function Dashboard() {
       try {
         const res = await fetch('https://weremind.onrender.com/api/reminders');
         const data = await res.json();
-        console.log('Raw reminders from backend:', data);
         
         // Filter to only upcoming reminders (dateTime in the future)
         const now = new Date();
-        console.log('Current time:', now.toISOString());
-        
-        const upcoming = data.filter(rem => {
-          const reminderDate = new Date(rem.dateTime);
-          console.log(`Reminder "${rem.title}": ${rem.dateTime} -> ${reminderDate.toISOString()}`);
-          return reminderDate > now;
-        });
-        
-        console.log('Filtered upcoming reminders:', upcoming);
+        const upcoming = data.filter(rem => new Date(rem.dateTime) > now);
         setReminders(upcoming);
       } catch (e) {
-        console.error('Error fetching reminders:', e);
         setReminders([]);
       }
     }
