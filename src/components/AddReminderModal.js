@@ -49,22 +49,22 @@ export default function AddReminderModal({ open, onClose, onAdd, userChannels, i
     console.log('Input datetime-local value:', dateTime);
     
     // datetime-local gives us local time in the format "YYYY-MM-DDTHH:mm"
-    // We need to convert this to UTC
+    // Parse the components
     const [datePart, timePart] = dateTime.split('T');
     const [year, month, day] = datePart.split('-').map(Number);
     const [hours, minutes] = timePart.split(':').map(Number);
     
-    // Create a Date object in local time
+    // Create a Date object using the local time components
+    // This creates a date in the user's local timezone
     const localDate = new Date(year, month - 1, day, hours, minutes);
     console.log('Local Date object:', localDate);
     console.log('Local Date ISO string:', localDate.toISOString());
     
-    // Convert to UTC
-    const utcDate = new Date(localDate.getTime() - localDate.getTimezoneOffset() * 60000);
-    console.log('UTC Date object:', utcDate);
-    console.log('UTC Date ISO string:', utcDate.toISOString());
+    // The localDate.toISOString() already gives us the correct UTC time
+    // No need for additional timezone offset calculations
+    console.log('Final UTC ISO string:', localDate.toISOString());
     
-    onAdd({ title, dateTime: utcDate.toISOString(), methods: selectedMethods });
+    onAdd({ title, dateTime: localDate.toISOString(), methods: selectedMethods });
   };
 
   return (
