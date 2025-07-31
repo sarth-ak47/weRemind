@@ -60,35 +60,40 @@ A comprehensive reminder management application that helps users never miss impo
 ## 📱 Screenshots
 
 ### Homepage
-![Homepage](https://via.placeholder.com/800x400/ffffff/000000?text=weRemind+Homepage)
+<img width="1915" height="929" alt="image" src="https://github.com/user-attachments/assets/37c97bf7-6eb0-4934-a135-0e32f220fd90" />
+
 - Clean, modern interface with centered navigation
 - Hero section with "Never Miss Important Reminders Again"
 - Multi-channel notification preview
 - Call-to-action buttons for getting started
 
 ### Dashboard
-![Dashboard](https://via.placeholder.com/800x400/ffffff/000000?text=weRemind+Dashboard)
+<img width="1912" height="929" alt="image" src="https://github.com/user-attachments/assets/b2a4f561-dd30-4d48-b35f-6ec7ecae4f0b" />
+
 - Sidebar navigation with user information
 - Reminders management interface
 - Add reminder functionality
 - Usage statistics and progress tracking
 
 ### Notification Channels
-![Notification Channels](https://via.placeholder.com/800x400/ffffff/000000?text=Notification+Channels)
+<img width="1914" height="928" alt="image" src="https://github.com/user-attachments/assets/4d8b2608-5ee1-45b3-8ccc-1f2aefdc25e4" />
+
 - Email, Phone, and WhatsApp integration
 - Channel verification system
 - Connection status indicators
 - Premium features for WhatsApp
 
 ### Settings & Profile
-![Settings](https://via.placeholder.com/800x400/ffffff/000000?text=Settings+Page)
+<img width="1915" height="921" alt="image" src="https://github.com/user-attachments/assets/9c466b45-1f8e-44dc-ad65-796cd0e933fe" />
+
 - Account information management
 - Profile settings with Google integration
 - Account deletion options
 - User preferences
 
 ### Feedback System
-![Feedback](https://via.placeholder.com/800x400/ffffff/000000?text=Feedback+Page)
+<img width="1916" height="925" alt="image" src="https://github.com/user-attachments/assets/a14e21d4-c827-4c1e-bde1-a66c2a80f758" />
+
 - User feedback submission
 - Clean feedback interface
 - Direct communication channel
@@ -234,7 +239,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 If you encounter any issues or have questions:
 
 - **Create** an issue on GitHub
-- **Email** support at support@weremind.com
+- **Email** support at sarthakvarsh9696@gmail.com
 - **Check** the documentation for common solutions
 
 ## 🔄 Version History
