@@ -72,7 +72,7 @@ app.get('/api/test-reminders', async (req, res) => {
   try {
     console.log('Manual reminder processing triggered');
     const now = new Date();
-    const reminders = await Reminder.find({ dateTime: { $lte: now }, sent: false });
+    const reminders = await Reminder.find({ dateTime: { $lte: now }, sent: false }).limit(10);
     console.log('Found', reminders.length, 'due reminders for manual processing');
     
     let processedCount = 0;
@@ -171,6 +171,40 @@ const transporter = nodemailer.createTransport({
 const twilioClient = twilio(process.env.TWILIO_ACCOUNT_SID, process.env.TWILIO_AUTH_TOKEN);
 const twilioPhone = process.env.TWILIO_PHONE_NUMBER;
 
+// Reset failed reminders (mark as unsent for retry)
+app.post('/api/reset-failed-reminders', async (req, res) => {
+  try {
+    console.log('Resetting failed reminders');
+    const result = await Reminder.updateMany(
+      { 
+        sent: true, 
+        $or: [
+          { 'sentStatus.email': false },
+          { 'sentStatus.phone': false },
+          { 'sentStatus.whatsapp': false }
+        ]
+      },
+      { 
+        $set: { 
+          sent: false,
+          'sentStatus.email': false,
+          'sentStatus.phone': false,
+          'sentStatus.whatsapp': false
+        } 
+      }
+    );
+    
+    res.json({ 
+      message: 'Failed reminders reset successfully',
+      modifiedCount: result.modifiedCount,
+      timestamp: new Date().toISOString()
+    });
+  } catch (error) {
+    console.error('Reset failed reminders error:', error);
+    res.status(500).json({ error: error.message });
+  }
+});
+
 cron.schedule('* * * * *', async () => {
   try {
     console.log('Cron job running at:', new Date().toISOString());
@@ -239,6 +273,9 @@ cron.schedule('* * * * *', async () => {
         reminder.updatedAt = new Date();
         await reminder.save();
         console.log('Updated reminder:', reminder._id, 'Sent status:', reminder.sentStatus, 'Fully sent:', reminder.sent);
+      } else {
+        // If no notifications were sent, don't mark as sent
+        console.log('No notifications sent for reminder:', reminder._id, 'Methods:', reminder.methods);
       }
     }
   } catch (error) {
