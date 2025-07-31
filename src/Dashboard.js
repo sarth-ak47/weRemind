@@ -456,17 +456,30 @@ export default function Dashboard() {
               open={showAddReminder || !!editingReminder}
               onClose={() => { setShowAddReminder(false); setEditingReminder(null); }}
               onAdd={async (reminder) => {
-                // Get verified contacts
+                // Get verified contacts from userChannels array
                 const contacts = { email: '', phone: '', whatsapp: '' };
-                userChannels.forEach(ch => {
-                  if (ch.isVerified) contacts[ch.channelType] = ch.contact;
-                });
+                console.log('userChannels:', userChannels); // Debug log
+                
+                if (userChannels && Array.isArray(userChannels)) {
+                  userChannels.forEach(ch => {
+                    if (ch.isVerified && ch.contact) {
+                      contacts[ch.channelType] = ch.contact;
+                      console.log(`Setting ${ch.channelType} to ${ch.contact}`); // Debug log
+                    }
+                  });
+                }
+                
+                console.log('Final contacts:', contacts); // Debug log
+                
                 const payload = {
                   ...reminder,
                   email: contacts.email,
                   phone: contacts.phone,
                   whatsapp: contacts.whatsapp
                 };
+                
+                console.log('Sending payload:', payload); // Debug log
+                
                 // Save to backend
                 const res = await fetch('https://weremind.onrender.com/api/reminders', {
                   method: 'POST',
@@ -476,6 +489,8 @@ export default function Dashboard() {
                 const data = await res.json();
                 if (res.ok) {
                   setReminders(prev => [...prev, { ...data, id: data._id }]);
+                } else {
+                  console.error('Failed to create reminder:', data); // Debug log
                 }
                 setShowAddReminder(false);
                 setEditingReminder(null);

@@ -44,50 +44,90 @@ const transporter = nodemailer.createTransport({
     pass: process.env.EMAIL_PASS
   }
 });
+
+// Debug environment variables
+console.log('Email configuration:');
+console.log('- EMAIL_USER:', process.env.EMAIL_USER ? 'Set' : 'NOT SET');
+console.log('- EMAIL_PASS:', process.env.EMAIL_PASS ? 'Set' : 'NOT SET');
+
 const twilioClient = twilio(process.env.TWILIO_ACCOUNT_SID, process.env.TWILIO_AUTH_TOKEN);
 const twilioPhone = process.env.TWILIO_PHONE_NUMBER;
 
+// Debug Twilio configuration
+console.log('Twilio configuration:');
+console.log('- TWILIO_ACCOUNT_SID:', process.env.TWILIO_ACCOUNT_SID ? 'Set' : 'NOT SET');
+console.log('- TWILIO_AUTH_TOKEN:', process.env.TWILIO_AUTH_TOKEN ? 'Set' : 'NOT SET');
+console.log('- TWILIO_PHONE_NUMBER:', process.env.TWILIO_PHONE_NUMBER ? process.env.TWILIO_PHONE_NUMBER : 'NOT SET');
+
 cron.schedule('* * * * *', async () => {
   const now = new Date();
+  console.log('Cron job running at:', now.toISOString());
+  
   const reminders = await Reminder.find({ dateTime: { $lte: now }, sent: false });
+  console.log('Found', reminders.length, 'due reminders');
+  
   for (const reminder of reminders) {
+    console.log('Processing reminder:', reminder._id, 'Title:', reminder.title);
+    console.log('Reminder methods:', reminder.methods);
+    console.log('Reminder contacts - Email:', reminder.email, 'Phone:', reminder.phone, 'WhatsApp:', reminder.whatsapp);
+    
     let anySent = false;
     // Email
     if (reminder.methods.includes('email') && reminder.email && !reminder.sentStatus.email) {
-      await transporter.sendMail({
-        to: reminder.email,
-        subject: 'Your Reminder',
-        text: reminder.title
-      });
-      reminder.sentStatus.email = true;
-      anySent = true;
+      console.log('Attempting to send email to:', reminder.email);
+      try {
+        await transporter.sendMail({
+          to: reminder.email,
+          subject: 'Your Reminder',
+          text: reminder.title
+        });
+        reminder.sentStatus.email = true;
+        anySent = true;
+        console.log('Email sent successfully');
+      } catch (error) {
+        console.error('Email sending failed:', error.message);
+      }
     }
     // Phone (call)
     if (reminder.methods.includes('phone') && reminder.phone && !reminder.sentStatus.phone) {
-      await twilioClient.calls.create({
-        twiml: `<Response><Say voice="alice">This is your reminder: ${reminder.title}</Say></Response>`,
-        to: reminder.phone,
-        from: twilioPhone
-      });
-      reminder.sentStatus.phone = true;
-      anySent = true;
+      console.log('Attempting to make phone call to:', reminder.phone);
+      try {
+        await twilioClient.calls.create({
+          twiml: `<Response><Say voice="alice">This is your reminder: ${reminder.title}</Say></Response>`,
+          to: reminder.phone,
+          from: twilioPhone
+        });
+        reminder.sentStatus.phone = true;
+        anySent = true;
+        console.log('Phone call initiated successfully');
+      } catch (error) {
+        console.error('Phone call failed:', error.message);
+      }
     }
     // WhatsApp (optional, can send message)
     if (reminder.methods.includes('whatsapp') && reminder.whatsapp && !reminder.sentStatus.whatsapp) {
-      await twilioClient.messages.create({
-        body: `Your reminder: ${reminder.title}`,
-        from: `whatsapp:${twilioPhone}`,
-        to: reminder.whatsapp
-      });
-      reminder.sentStatus.whatsapp = true;
-      anySent = true;
+      console.log('Attempting to send WhatsApp message to:', reminder.whatsapp);
+      try {
+        await twilioClient.messages.create({
+          body: `Your reminder: ${reminder.title}`,
+          from: `whatsapp:${twilioPhone}`,
+          to: reminder.whatsapp
+        });
+        reminder.sentStatus.whatsapp = true;
+        anySent = true;
+        console.log('WhatsApp message sent successfully');
+      } catch (error) {
+        console.error('WhatsApp sending failed:', error.message);
+      }
     }
     // Set sent to true only if all selected methods are sent
     reminder.sent = reminder.methods.every(m => reminder.sentStatus[m]);
     if (anySent) {
       reminder.updatedAt = new Date();
       await reminder.save();
-      console.log('Updated reminder:', reminder._id, reminder.sentStatus);
+      console.log('Updated reminder:', reminder._id, 'Sent status:', reminder.sentStatus);
+    } else {
+      console.log('No methods were sent for reminder:', reminder._id);
     }
   }
 });
