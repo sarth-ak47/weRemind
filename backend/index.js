@@ -98,6 +98,30 @@ console.log('- TWILIO_ACCOUNT_SID:', process.env.TWILIO_ACCOUNT_SID ? 'Set' : 'N
 console.log('- TWILIO_AUTH_TOKEN:', process.env.TWILIO_AUTH_TOKEN ? 'Set' : 'NOT SET');
 console.log('- TWILIO_PHONE_NUMBER:', process.env.TWILIO_PHONE_NUMBER ? process.env.TWILIO_PHONE_NUMBER : 'NOT SET');
 
+// One-time cleanup: Mark all existing reminders as sent to stop duplicates
+// This will run once when the server starts
+async function cleanupExistingReminders() {
+  try {
+    console.log('🧹 Running one-time cleanup of existing reminders...');
+    const result = await Reminder.updateMany(
+      { sent: false },
+      { 
+        $set: { 
+          sent: true, 
+          sentStatus: { email: true, phone: true, whatsapp: true },
+          updatedAt: new Date()
+        }
+      }
+    );
+    console.log(`✅ Cleaned up ${result.modifiedCount} existing reminders`);
+  } catch (error) {
+    console.error('❌ Cleanup failed:', error.message);
+  }
+}
+
+// Run cleanup on startup
+cleanupExistingReminders();
+
 cron.schedule('* * * * *', async () => {
   try {
     console.log('Cron job running at:', new Date().toISOString());
