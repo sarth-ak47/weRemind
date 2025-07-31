@@ -108,6 +108,24 @@ cron.schedule('* * * * *', async () => {
     }
     
     const now = new Date();
+    
+    // Clean up very old reminders (older than 1 hour) that haven't been marked as sent
+    const oneHourAgo = new Date(now.getTime() - 60 * 60 * 1000);
+    const oldReminders = await Reminder.find({ 
+      dateTime: { $lte: oneHourAgo }, 
+      sent: false 
+    });
+    
+    if (oldReminders.length > 0) {
+      console.log(`Cleaning up ${oldReminders.length} old reminders`);
+      for (const oldReminder of oldReminders) {
+        oldReminder.sent = true;
+        oldReminder.updatedAt = new Date();
+        await oldReminder.save();
+        console.log(`Marked old reminder as sent: ${oldReminder._id} - ${oldReminder.title}`);
+      }
+    }
+    
     const reminders = await Reminder.find({ dateTime: { $lte: now }, sent: false });
     console.log('Found', reminders.length, 'due reminders');
     
@@ -166,14 +184,54 @@ cron.schedule('* * * * *', async () => {
             console.error('WhatsApp sending failed:', error.message);
           }
         }
-        // Set sent to true only if all selected methods are sent
-        reminder.sent = reminder.methods.every(m => reminder.sentStatus[m]);
-        if (anySent) {
+        // Set sent to true if any method was sent successfully
+        // Also mark individual methods as failed if they couldn't be sent
+        let methodsAttempted = 0;
+        let methodsSucceeded = 0;
+        
+        // Check each selected method
+        for (const method of reminder.methods) {
+          if (method === 'email' && reminder.email) {
+            methodsAttempted++;
+            if (reminder.sentStatus.email) {
+              methodsSucceeded++;
+            } else {
+              // Mark as failed if we have email but it wasn't sent
+              reminder.sentStatus.email = false;
+            }
+          }
+          if (method === 'phone' && reminder.phone) {
+            methodsAttempted++;
+            if (reminder.sentStatus.phone) {
+              methodsSucceeded++;
+            } else {
+              // Mark as failed if we have phone but it wasn't sent
+              reminder.sentStatus.phone = false;
+            }
+          }
+          if (method === 'whatsapp' && reminder.whatsapp) {
+            methodsAttempted++;
+            if (reminder.sentStatus.whatsapp) {
+              methodsSucceeded++;
+            } else {
+              // Mark as failed if we have whatsapp but it wasn't sent
+              reminder.sentStatus.whatsapp = false;
+            }
+          }
+        }
+        
+        // Mark reminder as sent if we attempted to send it (even if some methods failed)
+        if (methodsAttempted > 0) {
+          reminder.sent = true;
+          console.log(`Reminder processed: ${methodsSucceeded}/${methodsAttempted} methods succeeded`);
+        }
+        
+        if (anySent || methodsAttempted > 0) {
           reminder.updatedAt = new Date();
           await reminder.save();
-          console.log('Updated reminder:', reminder._id, 'Sent status:', reminder.sentStatus);
+          console.log('Updated reminder:', reminder._id, 'Sent status:', reminder.sentStatus, 'Overall sent:', reminder.sent);
         } else {
-          console.log('No methods were sent for reminder:', reminder._id);
+          console.log('No methods were attempted for reminder:', reminder._id);
         }
       } catch (reminderError) {
         console.error('Error processing reminder:', reminder._id, reminderError.message);
