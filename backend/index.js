@@ -68,7 +68,7 @@ app.get('/api/debug', async (req, res) => {
 });
 
 // Test endpoint to manually trigger reminder processing
-app.post('/api/test-reminders', async (req, res) => {
+app.get('/api/test-reminders', async (req, res) => {
   try {
     console.log('Manual reminder processing triggered');
     const now = new Date();
