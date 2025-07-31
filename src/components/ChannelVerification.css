@@ -220,6 +220,19 @@
   border: 1px solid #fecaca;
 }
 
+/* Dark mode styles for messages */
+.dashboard-root.dark .message.success {
+  background: #0f2e1a;
+  color: #4ade80;
+  border: 1px solid #166534;
+}
+
+.dashboard-root.dark .message.error {
+  background: #2e1a1a;
+  color: #f87171;
+  border: 1px solid #dc2626;
+}
+
 .paid-badge {
   background: #ffe0b2;
   color: #b26a00;

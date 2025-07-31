@@ -344,8 +344,8 @@ export default function Dashboard() {
       });
       
       if (res.ok) {
-    // Remove from UI
-    setReminders(prev => prev.filter(r => (r._id || r.id) !== (reminder._id || reminder.id)));
+        // Remove from UI
+        setReminders(prev => prev.filter(r => (r._id || r.id) !== (reminder._id || reminder.id)));
       }
     } catch (error) {
       console.error('Error deleting reminder:', error);

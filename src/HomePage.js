@@ -121,22 +121,22 @@ function NavBar({ onContactClick, onHomeClick, onLogin, onLogout, user, mobileMe
       
       {/* Desktop navbar */}
       <div className="wr-desktop-nav">
-      <div className="wr-nav-links">
-        <a href="#home" onClick={onHomeClick}>Home</a>
-        <a href="#contact" onClick={onContactClick}>Contact</a>
-        {user && (
-          <a href="#dashboard" onClick={e => { e.preventDefault(); navigate('/dashboard'); }}>Dashboard</a>
-        )}
-      </div>
-      <div className="wr-login">
-        {user ? (
-          <>
-            <span className="wr-user-greet">Hello, {user.displayName || user.email}</span>
-            <button className="wr-login-btn" onClick={onLogout}>Logout</button>
-          </>
-        ) : (
-          <button className="wr-login-btn" onClick={onLogin}>Login</button>
-        )}
+        <div className="wr-nav-links">
+          <a href="#home" onClick={onHomeClick}>Home</a>
+          <a href="#contact" onClick={onContactClick}>Contact</a>
+          {user && (
+            <a href="#dashboard" onClick={e => { e.preventDefault(); navigate('/dashboard'); }}>Dashboard</a>
+          )}
+        </div>
+        <div className="wr-login">
+          {user ? (
+            <>
+              <span className="wr-user-greet">Hello, {user.displayName || user.email}</span>
+              <button className="wr-login-btn" onClick={onLogout}>Logout</button>
+            </>
+          ) : (
+            <button className="wr-login-btn" onClick={onLogin}>Login</button>
+          )}
         </div>
       </div>
     </nav>
